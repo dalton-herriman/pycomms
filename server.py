@@ -24,7 +24,7 @@ def handle_client(client_socket, addr):
         username = client_socket.recv(1024).decode('utf-8').strip()
         clients.append((client_socket, username))
         print(f"[+] {username} joined from {addr}")
-        broadcast(f"{username} has joined the chat!", client_socket)
+        broadcast(f"[BROADCAST] {username} has joined the chat!", client_socket)
 
         # Send a message back to the client
         client_socket.send("[PRIVATE] Welcome to the server!".encode('utf-8'))
