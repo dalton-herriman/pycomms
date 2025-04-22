@@ -1,12 +1,15 @@
 import socket
 
-HOST = '127.0.0.1' #Server's IP
-PORT = 5555 #Port the server is listening on 
+HOST = input("Enter the server's IP address: ")
+PORT = int(input("Enter the server's port: "))
 
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 client.connect((HOST, PORT))
 
-print(f"Connected to server at {HOST}:{PORT}")
+username = input("Enter your username: ")
+print(f"Connected to server at {HOST}:{PORT} as {username}")
+client.sendall(f"{username} has joined the chat.".encode('utf-8'))
+
 try:
     while True:
         message = input("You: ")
