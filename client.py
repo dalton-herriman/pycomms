@@ -20,7 +20,7 @@ def listen_for_server():
             elif server_message.startswith("[PRIVATE]"):
                 print(f"(Private) {server_message[len('[PRIVATE] '):]}")
             else:
-                print(f"\r{server_message}\nYou: ", end="")
+                print(f"\r{server_message}\n>>>: ", end="")
         except:
             break
 
