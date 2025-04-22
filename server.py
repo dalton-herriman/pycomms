@@ -1,7 +1,7 @@
 import socket
 import threading
 
-HOST = '127.0.0.1'  # Listen on all available interfaces
+HOST = '0.0.0.0'  # Listen on all available interfaces
 PORT = 5555         # Arbitrary non-privileged port
 
 clients = []  # List to store client sockets and usernames
