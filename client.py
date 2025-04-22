@@ -9,8 +9,6 @@ client.connect((HOST, PORT))
 print(f"Connected to server at {HOST}:{PORT} as {username}")
 
 # Wait for the server to ask for username, then send it
-server_prompt = client.recv(1024).decode('utf-8')
-print(server_prompt)
 client.sendall(username.encode('utf-8'))
 
 try:
