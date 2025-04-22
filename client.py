@@ -7,7 +7,11 @@ client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 username = input("Enter your username: ")
 client.connect((HOST, PORT))
 print(f"Connected to server at {HOST}:{PORT} as {username}")
-client.sendall(f"{username} has joined the chat.".encode('utf-8'))
+
+# Wait for the server to ask for username, then send it
+server_prompt = client.recv(1024).decode('utf-8')
+print(server_prompt)
+client.sendall(username.encode('utf-8'))
 
 try:
     while True:
