@@ -16,11 +16,13 @@ def listen_for_server():
         try:
             server_message = client.recv(1024).decode('utf-8')
             if server_message.startswith("[BROADCAST]"):
-                print(server_message[len("[BROADCAST] "):])
+                message = server_message[len("[BROADCAST] "):]
+                print(f"\r{message}\n>>> ", end="")
             elif server_message.startswith("[PRIVATE]"):
-                print(f"(Private) {server_message[len('[PRIVATE] '):]}")
+                message = server_message[len("[PRIVATE] "):]
+                print(f"\r(Private) {message}\n>>> ", end="")
             else:
-                print(f"\r{server_message}\nYou: ", end="")
+                print(f"\r{server_message}\n>>>: ", end="")
         except:
             break
 
