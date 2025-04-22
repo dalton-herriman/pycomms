@@ -1,12 +1,11 @@
 import socket
 
-HOST = input("Enter the server's IP address: ")
-PORT = int(input("Enter the server's port: "))
+HOST = input("Enter the server IP address: ")
+PORT = int(input("Enter the server port: "))
 
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-client.connect((HOST, PORT))
-
 username = input("Enter your username: ")
+client.connect((HOST, PORT))
 print(f"Connected to server at {HOST}:{PORT} as {username}")
 client.sendall(f"{username} has joined the chat.".encode('utf-8'))
 
