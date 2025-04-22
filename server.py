@@ -11,7 +11,7 @@ def broadcast(message, sender_socket=None):
     for client, username in clients:
         if client != sender_socket:
             try:
-                client.send(message.encode('utf-8'))
+                client.send(f"[BROADCAST] {message}".encode('utf-8'))
             except:
                 client.close()
                 clients.remove((client, username))
@@ -21,11 +21,13 @@ def handle_client(client_socket, addr):
     print(f"[+] New connection from {addr}")
     try:
         # Request and store the username
-        client_socket.send("Enter your username: ".encode('utf-8'))
         username = client_socket.recv(1024).decode('utf-8').strip()
         clients.append((client_socket, username))
         print(f"[+] {username} joined from {addr}")
         broadcast(f"{username} has joined the chat!", client_socket)
+
+        # Send a message back to the client
+        client_socket.send("[PRIVATE] Welcome to the server!".encode('utf-8'))
 
         while True:
             message = client_socket.recv(1024).decode('utf-8')
