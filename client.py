@@ -31,7 +31,7 @@ thread.start()
 
 try:
     while True:
-        message = input("You: ")
+        message = input(">>> ")
         if message.lower() in ['exit', 'quit']:
             break
         client.sendall(message.encode('utf-8'))
